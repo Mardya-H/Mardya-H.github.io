@@ -22,29 +22,28 @@ layout: default
   </div>
 </header>
 
-<!-- 文章列表：撕边纸块卡片 -->
+<!-- 文章列表：纯纸面墨迹卡片，无需配图 -->
 <section class="posts-section" id="posts">
   <h2 class="section-title">
     <span class="section-mark"></span>字迹<span class="section-en typewriter">/ POSTS</span>
   </h2>
 
   {%- if site.posts.size > 0 -%}
-  <div class="post-grid">
+  <div class="post-list">
     {%- for post in site.posts -%}
     <article class="post-card reveal">
       <a class="post-link" href="{{ post.url | relative_url }}">
-        {%- assign cover_id = forloop.index0 | modulo: 4 | plus: 0 -%}
-        {%- assign covers = "post-1018,post-1036,post-1015,post-29" | split: "," -%}
-        {%- assign cover = covers[cover_id] -%}
-        <div class="post-cover-wrap">
-          <img class="post-cover" src="{{ '/assets/img/' | append: cover | append: '.jpg' | relative_url }}" alt="" loading="lazy">
-          <span class="cover-tear" aria-hidden="true"></span>
+        <div class="post-card-head">
+          <span class="post-date typewriter">{{ post.date | date: '%Y.%m.%d' }}</span>
+          <span class="post-marks" aria-hidden="true">
+            <i class="mark-dot"></i><i class="mark-dot"></i><i class="mark-dot"></i>
+          </span>
         </div>
-        <div class="post-meta typewriter">{{ post.date | date: '%Y.%m.%d' }}</div>
         <h3 class="post-title">{{ post.title | escape }}</h3>
         {%- if post.excerpt -%}
-        <p class="post-excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 72 }}</p>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 80 }}</p>
         {%- endif -%}
+        <span class="post-read typewriter">READ →</span>
       </a>
     </article>
     {%- endfor -%}
