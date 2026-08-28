@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'zh-CN' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {%- feed_meta -%}
+</head>
+<body>
+  <nav class="glass-nav" id="site-nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="{{ '/' | relative_url }}">
+        <span class="brand-dot"></span>{{ site.title | default: "Tech Blog" | escape }}
+      </a>
+      <div class="nav-links">
+        <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>首页</a>
+        <a href="{{ '/about/' | relative_url }}">关于</a>
+        <a class="nav-cta" href="{{ '/' | relative_url }}#publish">上传新文章</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-content" id="top">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© {{ 'now' | date: '%Y' }} {{ site.title | default: "Tech Blog" | escape }} · 用 Markdown 书写，用 Jekyll 发布</p>
+      {%- if site.github_username -%}
+      <a href="https://github.com/{{ site.github_username | escape }}" target="_blank" rel="noopener">GitHub</a>
+      {%- endif -%}
+    </div>
+  </footer>
+
+  <button class="back-top" id="back-top" aria-label="返回顶部">↑</button>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>
