@@ -116,8 +116,17 @@ a { color: var(--ink); }
 .hero-photo {
   display: block;
   width: 100%;
-  max-height: 340px;
+  max-height: 480px;
   object-fit: cover;
+  /* 渐隐融入纸面：底部与右缘淡出 */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 52%, rgba(0,0,0,.55) 78%, transparent 100%),
+    linear-gradient(to right, #000 60%, rgba(0,0,0,.6) 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 52%, rgba(0,0,0,.55) 78%, transparent 100%),
+    linear-gradient(to right, #000 60%, rgba(0,0,0,.6) 88%, transparent 100%);
+  mask-composite: intersect;
   /* 缓慢显影，如墨入水 */
   animation: photo-develop 2.2s ease both;
 }
@@ -126,11 +135,11 @@ a { color: var(--ink); }
   to   { opacity: 1; filter: blur(0) grayscale(0); transform: scale(1); }
 }
 
-/* 朱红细线：跨界引导视线 */
+/* 朱红细线：跨界引导视线（置于渐隐区之上） */
 .red-thread {
   position: absolute;
   left: 0; right: 0;
-  bottom: 14%;
+  bottom: 34%;
   width: 100%;
   height: 160px;
   pointer-events: none;
@@ -178,26 +187,29 @@ a { color: var(--ink); }
   50% { transform: translate(18px, -14px) scale(1.25); opacity: .9; }
 }
 
-/* Hero 文本 */
+/* Hero 文本：落在右侧纸面留白处，墨色书写 */
 .hero-text {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: min(92%, 640px);
-  color: var(--paper);
-  text-shadow: 0 1px 10px rgba(43, 39, 35, .45);
+  right: 7%;
+  top: 46%;
+  transform: translateY(-50%);
+  text-align: right;
+  width: min(40%, 400px);
+  color: var(--ink);
+  /* 万一压到照片边缘，纸色晕光保证可读 */
+  text-shadow:
+    0 0 6px rgba(244, 239, 228, .9),
+    0 0 20px rgba(244, 239, 228, .85);
   animation: rise-up 1.2s .6s ease both;
 }
 @keyframes rise-up {
-  from { opacity: 0; transform: translateX(-50%) translateY(26px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from { opacity: 0; transform: translateY(calc(-50% + 26px)); }
+  to   { opacity: 1; transform: translateY(-50%); }
 }
 .hero-kicker {
   font-size: 12px;
   letter-spacing: .4em;
-  color: #f7c8b8;
+  color: var(--vermilion);
   margin: 0 0 8px;
   min-height: 1.2em;
 }
@@ -210,16 +222,16 @@ a { color: var(--ink); }
 
 .hero-title {
   margin: 0;
-  font-size: clamp(26px, 4.5vw, 44px);
+  font-size: clamp(24px, 3.8vw, 40px);
   font-weight: 700;
   letter-spacing: .16em;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 .hero-sub {
   margin: 10px 0 0;
-  font-size: clamp(13px, 1.8vw, 15px);
+  font-size: clamp(13px, 1.6vw, 15px);
   letter-spacing: .2em;
-  opacity: .92;
+  color: var(--ink-soft);
 }
 
 /* ==================== 通用区块 ==================== */
@@ -496,7 +508,17 @@ a { color: var(--ink); }
   .posts-section { padding: 48px 16px 56px; }
   .nav-links { gap: 16px; }
   .nav-links a { font-size: 14px; }
-  .red-thread { bottom: 8%; }
+  .red-thread { bottom: 28%; }
+  /* 小屏：文本回到照片之上的居中位置，用纸色晕光保证可读 */
+  .hero-text {
+    right: auto;
+    left: 50%;
+    top: 42%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: min(88%, 480px);
+    color: var(--ink);
+  }
   .neighbor { max-width: 100%; }
   .neighbor.next { text-align: left; margin-left: 0; }
 }
