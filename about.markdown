@@ -1,18 +1,22 @@
 ---
 layout: page
-title: About
+title: 关于
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+「墨笔」是一座以纸刊拼贴美学搭建的技术博客：真实摄影为锚，撕纸毛边为界，大面积纸面留白，仅以一抹朱红引导视线。
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+## 写作规范
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+- 文章使用 Markdown，放入 `_posts/` 目录
+- 文件名形如 `2026-08-28-my-post.md`
+- 文件头包含 `layout: post`、`title` 与 `date`
 
+## 图片版权说明
 
-[jekyll-organization]: https://github.com/jekyll
+- 首页主视觉为 AI 生成的 Zine 风格插画，无版权风险
+- 文章卡片配图来自 Lorem Picsum（Unsplash 许可，可自由使用，无需署名）
+
+## 致谢
+
+风格参考 Zine-Blend 的摄影锚定与纸刊排版规则。站点由 [Jekyll](https://jekyllrb.com/) 生成。

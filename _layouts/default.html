@@ -9,28 +9,32 @@
   {%- feed_meta -%}
 </head>
 <body>
-  <nav class="glass-nav" id="site-nav">
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <nav class="site-nav" id="site-nav">
     <div class="nav-inner">
       <a class="nav-brand" href="{{ '/' | relative_url }}">
-        <span class="brand-dot"></span>{{ site.title | default: "Tech Blog" | escape }}
+        <span class="brand-seal">墨</span>
+        <span class="brand-name">{{ site.title | default: "墨笔" | escape }}</span>
       </a>
       <div class="nav-links">
         <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>首页</a>
         <a href="{{ '/about/' | relative_url }}">关于</a>
-        <a class="nav-cta" href="{{ '/' | relative_url }}#publish">上传新文章</a>
+        <a class="nav-cta" href="{{ '/' | relative_url }}#publish">投稿</a>
       </div>
     </div>
   </nav>
 
-  <main class="page-content" id="top">
+  <main class="page-content">
     {{ content }}
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <p>© {{ 'now' | date: '%Y' }} {{ site.title | default: "Tech Blog" | escape }} · 用 Markdown 书写，用 Jekyll 发布</p>
+      <span class="typewriter">© {{ 'now' | date: '%Y' }} {{ site.title | default: "墨笔" | escape }} · WRITE IN MARKDOWN / PUBLISH IN JEKYLL</span>
+      <span class="ink-divider" aria-hidden="true"></span>
       {%- if site.github_username -%}
-      <a href="https://github.com/{{ site.github_username | escape }}" target="_blank" rel="noopener">GitHub</a>
+      <a class="typewriter" href="https://github.com/{{ site.github_username | escape }}" target="_blank" rel="noopener">GITHUB/{{ site.github_username | escape }}</a>
       {%- endif -%}
     </div>
   </footer>

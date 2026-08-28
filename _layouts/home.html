@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<!-- Hero：山雾摄影锚定于纸面，朱红细线跨界引导 -->
+<header class="hero">
+  <div class="hero-paper">
+    <img class="hero-photo" src="{{ '/assets/img/hero.jpg' | relative_url }}" alt="山雾水墨纸刊横幅">
+    <!-- 朱红细线：从照片流入纸面，动画绘制 -->
+    <svg class="red-thread" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+      <path class="thread-path" d="M0,120 C180,90 260,140 420,110 S700,60 860,95 S1100,130 1200,100" />
+      <circle class="thread-dot" r="5" />
+      <circle class="ink-drop" r="3" />
+    </svg>
+    <!-- 漂浮墨点 -->
+    <span class="float-ink ink-1" aria-hidden="true"></span>
+    <span class="float-ink ink-2" aria-hidden="true"></span>
+    <span class="float-ink ink-3" aria-hidden="true"></span>
+
+    <div class="hero-text">
+      <p class="hero-kicker typewriter" id="hero-type" data-text="TECH · ESSAYS · STILLNESS"></p>
+      <h1 class="hero-title">{{ site.title | default: "墨笔" | escape }}</h1>
+      <p class="hero-sub">{{ site.description | default: "把技术写作，落成一幅安静的水墨。" | escape }}</p>
+    </div>
+  </div>
+</header>
+
+<!-- 文章列表：撕边纸块卡片 -->
+<section class="posts-section" id="posts">
+  <h2 class="section-title">
+    <span class="section-mark"></span>近期文章<span class="section-en typewriter">/ RECENT POSTS</span>
+  </h2>
+
+  {%- if site.posts.size > 0 -%}
+  <div class="post-grid">
+    {%- for post in site.posts -%}
+    <article class="post-card reveal">
+      <a class="post-link" href="{{ post.url | relative_url }}">
+        {%- assign cover_id = forloop.index0 | modulo: 4 | plus: 0 -%}
+        {%- assign covers = "post-1018,post-1036,post-1015,post-29" | split: "," -%}
+        {%- assign cover = covers[cover_id] -%}
+        <div class="post-cover-wrap">
+          <img class="post-cover" src="{{ '/assets/img/' | append: cover | append: '.jpg' | relative_url }}" alt="" loading="lazy">
+          <span class="cover-tear" aria-hidden="true"></span>
+        </div>
+        <div class="post-meta typewriter">{{ post.date | date: '%Y.%m.%d' }}</div>
+        <h3 class="post-title">{{ post.title | escape }}</h3>
+        {%- if post.excerpt -%}
+        <p class="post-excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 72 }}</p>
+        {%- endif -%}
+        <span class="post-read typewriter">READ →</span>
+      </a>
+    </article>
+    {%- endfor -%}
+  </div>
+  {%- else -%}
+  <p class="empty-note typewriter">NO POSTS YET — 把你的 Markdown 放进 _posts/ 目录即可。</p>
+  {%- endif -%}
+</section>
+
+<!-- 投稿指引 -->
+<section class="publish-section" id="publish">
+  <div class="publish-inner reveal">
+    <h2 class="section-title"><span class="section-mark"></span>如何投稿<span class="section-en typewriter">/ SUBMIT</span></h2>
+    <ol class="publish-steps">
+      <li><strong>撰写</strong> — 用任意编辑器写一篇 Markdown 技术文章</li>
+      <li><strong>命名</strong> — 文件名形如 <code>2026-08-28-my-post.md</code>，放入 <code>_posts/</code> 目录</li>
+      <li><strong>元信息</strong> — 在文件头写上 <code>layout: post</code>、标题与日期</li>
+      <li><strong>提交</strong> — 推送到仓库，站点即自动重新出版</li>
+    </ol>
+    <p class="publish-quote">「文章如墨，落纸即刊。」</p>
+  </div>
+</section>

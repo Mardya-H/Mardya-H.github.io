@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<article class="post-page" itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <p class="post-meta typewriter">{{ page.date | date: '%Y.%m.%d' }}</p>
+    <h1 class="post-title" itemprop="headline">{{ page.title | escape }}</h1>
+    <span class="title-underline" aria-hidden="true"></span>
+  </header>
+
+  <div class="post-body" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {%- if site.posts.size > 1 -%}
+  <nav class="post-neighbors">
+    {%- assign sorted = site.posts | sort: 'date' | reverse -%}
+    {%- for p in sorted -%}
+      {%- if p.url == page.url -%}
+        {%- assign prev_idx = forloop.index0 | plus: 1 -%}
+        {%- assign next_idx = forloop.index0 | minus: 1 -%}
+        {%- if sorted[prev_idx] -%}
+          <a class="neighbor prev" href="{{ sorted[prev_idx].url | relative_url }}">
+            <span class="typewriter">← OLDER</span>{{ sorted[prev_idx].title | escape }}
+          </a>
+        {%- endif -%}
+        {%- if next_idx >= 0 -%}
+          <a class="neighbor next" href="{{ sorted[next_idx].url | relative_url }}">
+            <span class="typewriter">NEWER →</span>{{ sorted[next_idx].title | escape }}
+          </a>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+  {%- endif -%}
+
+</article>
