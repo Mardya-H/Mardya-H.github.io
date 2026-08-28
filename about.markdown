@@ -4,8 +4,10 @@ title: About Me
 permalink: /about/
 ---
 
-contact e-mail：443603667@qq.com
-github：https://github.com/Mardya-H
+## Contact With
+
+- e-mail：443603667@qq.com
+- github：https://github.com/Mardya-H
 
 ## 404 Not Found
 
