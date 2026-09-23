@@ -1,14 +1,19 @@
 ---
 layout: page
-title: About Me
+title: 关于
 permalink: /about/
 ---
 
-## Contact With
+这是一个私人博客：真实摄影为锚，撕纸毛边为界，大面积纸面留白，仅以一抹朱红引导视线。
 
-- e-mail：443603667@qq.com
-- github：https://github.com/Mardya-H
+## 写作方式
 
-## 404 Not Found
+- 用 Markdown 书写，不必操心排版
+- 长文短文皆宜，格式随心
+- 写完之后，即刻与读者见面
 
-- Request failed with status code 404
+## 图片说明
+
+- 文章无需配图，卡片为纯纸面墨迹样式
+- 首页横幅为 AI 生成的 Zine 风格插画，无版权风险
+- 文章内如需插图，在正文用 Markdown 直接引用本地图片即可
